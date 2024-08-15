@@ -8,6 +8,7 @@
 import SwiftUI
 
 /// A class to simplify the usage of haptic feedback in SwiftUI applications.
+@MainActor
 public class HapticFeedback {
  
     private let lightGenerator = UIImpactFeedbackGenerator(style: .light)
