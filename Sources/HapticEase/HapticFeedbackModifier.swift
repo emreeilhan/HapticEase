@@ -45,6 +45,30 @@ public struct HapticFeedbackModifier: ViewModifier {
             hapticFeedback.lightAndMediumPattern()
         case .heavyAndWarning:
             hapticFeedback.heavyAndWarningPattern()
+        case .wave:
+            hapticFeedback.wavePattern()
+        case .heartbeat:
+            hapticFeedback.heartbeatPattern()
+        case .tensionAndRelease:
+            hapticFeedback.tensionAndReleasePattern()
+        case .doubleSelection:
+            hapticFeedback.doubleSelectionPattern()
+        case .complexFeedback:
+            hapticFeedback.complexFeedbackPattern()
+        case .chainReaction:
+            hapticFeedback.chainReactionPattern()
+        case .rippleEffect:
+            hapticFeedback.rippleEffectPattern()
+        case .earthquake:
+            hapticFeedback.earthquakePattern()
+        case .pulse:
+            hapticFeedback.pulsePattern()
+        case .echo:
+            hapticFeedback.echoPattern()
+        case .sosSignal:
+            hapticFeedback.sosSignalPattern()
+        case .custom(intensity: let intensity, duration: let duration):
+            hapticFeedback.customFeedback(intensity: intensity, duration: duration)
         }
     }
 }
