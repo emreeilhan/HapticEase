@@ -1,4 +1,4 @@
-### 3. **Security Policy (Güvenlik Politikası) - `SECURITY.md`**
+
 
 ```markdown
 # Security Policy
