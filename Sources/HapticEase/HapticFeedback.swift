@@ -11,15 +11,27 @@ import SwiftUI
 @MainActor
 public class HapticFeedback {
     
+    /// Generates custom haptic feedback with a specified intensity and duration.
+    /// - Parameters:
+    ///   - intensity: The intensity of the haptic feedback, represented as a Float between 0.0 and 1.0.
+    ///   - duration: The total duration for which the haptic feedback will be generated.
     public func customFeedback(intensity: Float, duration: TimeInterval) {
+        // Create a UIImpactFeedbackGenerator with a medium style.
         let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        // Run the haptic feedback in a background thread.
         DispatchQueue.global().async {
+            // Record the start time.
             let startTime = Date().timeIntervalSince1970
+            
+            // Continue generating haptic feedback until the specified duration has passed.
             while Date().timeIntervalSince1970 - startTime < duration {
+                // Trigger the haptic feedback on the main thread with the specified intensity.
                 DispatchQueue.main.async {
                     generator.impactOccurred(intensity: CGFloat(intensity))
                 }
-                usleep(useconds_t(100000)) // 100ms bekleyin
+                // Wait for 100ms before triggering the next haptic feedback.
+                usleep(useconds_t(100000))
             }
         }
     }
