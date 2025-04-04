@@ -1,32 +1,25 @@
+### HapticEase 
 
 
----
+HapticEase is a lightweight Swift library designed to simplify the integration of haptic feedback in your SwiftUI applications. Whether you're looking to add a simple vibration or a complex pattern, HapticEase provides an easy-to-use interface to enhance your app's user experience with tactile feedback.
 
-# HapticEase
+#### Features
 
-[![Swift](https://img.shields.io/badge/Swift-5.5-orange.svg)](https://swift.org)
-[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+- **Simple Integration:** Easily add haptic feedback to any SwiftUI view with minimal code.
+- **Custom Patterns:** Create and trigger custom haptic feedback patterns.
+- **Multiple Feedback Types:** Includes support for light, medium, heavy impacts, and success, error, warning notifications.
+  
+#### Requirements
 
-`HapticEase` is a lightweight Swift library that simplifies the integration of haptic feedback in your SwiftUI applications. Whether you're looking to add a simple vibration or a complex pattern, `HapticEase` provides an easy-to-use interface to enhance your app's user experience with tactile feedback.
+- **iOS:** 13.0+
+- **Xcode:** 11.0+
+- **Swift:** 5.5+
 
-## Features
+#### Installation
 
-- **Simple Integration**: Easily add haptic feedback to any SwiftUI view with minimal code.
-- **Custom Patterns**: Create and trigger custom haptic feedback patterns.
-- **Multiple Feedback Types**: Includes support for light, medium, heavy impacts, and success, error, warning notifications.
+**Swift Package Manager**
 
-## Requirements
-
-- **iOS 13.0+**
-- **Xcode 11.0+**
-- **Swift 5.5+**
-
-## Installation
-
-### Swift Package Manager
-
-To integrate `HapticEase` into your project using Swift Package Manager, add it to your `Package.swift` file:
+To integrate HapticEase into your project using Swift Package Manager, add it to your `Package.swift` file:
 
 ```swift
 dependencies: [
@@ -34,17 +27,15 @@ dependencies: [
 ]
 ```
 
-Or, you can add the package directly within Xcode by going to:
+Alternatively, you can add the package directly within Xcode by going to:
 
-`File > Swift Packages > Add Package Dependency...` and enter the repository URL:
+**File > Swift Packages > Add Package Dependency...** and enter the repository URL:
 
-```
-https://github.com/emreeilhan/HapticEase.git
-```
+`https://github.com/emreeilhan/HapticEase.git`
 
-## Usage
+#### Usage
 
-### Basic Haptic Feedback
+**Basic Haptic Feedback**
 
 To use basic haptic feedback, create an instance of `HapticFeedback` and call the desired method:
 
@@ -55,16 +46,16 @@ let haptic = HapticFeedback()
 haptic.success() // Triggers a success haptic feedback
 ```
 
-### Custom Haptic Patterns
+**Custom Haptic Patterns**
 
-`HapticEase` also allows you to create custom haptic patterns:
+HapticEase also allows you to create custom haptic patterns:
 
 ```swift
 let haptic = HapticFeedback()
 haptic.customLightPattern() // Triggers a custom light pattern
 ```
 
-### Integrating with SwiftUI
+**Integrating with SwiftUI**
 
 You can use `HapticFeedbackModifier` to easily integrate haptic feedback into any SwiftUI view:
 
@@ -84,23 +75,32 @@ struct ContentView: View {
 }
 ```
 
-## Documentation
+#### Documentation
 
-Comprehensive documentation is available [here](https://github.com/emreeilhan/HapticEase/wiki).
+**Comprehensive Documentation**
 
-## Contributing
+HapticEase provides detailed documentation covering all aspects of its usage. You can find in-depth examples, API references, and tutorials on how to get the most out of HapticEase in your SwiftUI applications.
+
+- **Getting Started:** Learn how to quickly integrate HapticEase into your project.
+- **API Reference:** Detailed descriptions of each class, method, and property.
+- **Custom Patterns:** Step-by-step guides on creating and using custom haptic feedback patterns.
+- **Examples:** Practical examples demonstrating the use of HapticEase in various scenarios.
+- **Troubleshooting:** Tips and solutions for common issues you might encounter.
+
+Visit the [HapticEase Documentation](https://github.com/emreeilhan/HapticEase/wiki) to explore more.
+
+#### Contributing
 
 Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests should be made against the `main` branch.
 
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a pull request.
+1. **Fork the repository.**
+2. **Create your feature branch:** `git checkout -b feature/AmazingFeature`
+3. **Commit your changes:** `git commit -m 'Add some AmazingFeature'`
+4. **Push to the branch:** `git push origin feature/AmazingFeature`
+5. **Open a pull request.**
 
-## License
+#### License
 
-`HapticEase` is available under the MIT license. See the [LICENSE](https://github.com/emreeilhan/HapticEase/blob/main/LICENSE) file for more information.
+HapticEase is licensed under the MIT License. For more details, please see the [LICENSE](https://github.com/emreeilhan/HapticEase/blob/main/LICENSE) file in the repository.
 
 ---
-
