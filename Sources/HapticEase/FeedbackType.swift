@@ -1,4 +1,5 @@
-public enum FeedbackType {
+/// Feedback styles that can be played through ``HapticFeedback`` or the SwiftUI modifier.
+public enum FeedbackType: CaseIterable, Hashable, Sendable {
     /// A success notification haptic.
     case success
     /// An error notification haptic.

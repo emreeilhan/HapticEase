@@ -4,21 +4,21 @@ import XCTest
 
 final class FeedbackTypeTests: XCTestCase {
 
-    // Purpose: Ensure every documented feedback case remains available.
+    // Purpose: Ensure CaseIterable lists every feedback case.
     func testAllFeedbackTypeCasesAreReachable() {
-        let cases: [FeedbackType] = [
-            .success,
-            .error,
-            .warning,
-            .selection,
-            .light,
-            .medium,
-            .heavy,
-            .customLight,
-            .lightAndMedium,
-            .heavyAndWarning
-        ]
+        XCTAssertEqual(FeedbackType.allCases.count, 10)
+        XCTAssertTrue(FeedbackType.allCases.contains(.success))
+        XCTAssertTrue(FeedbackType.allCases.contains(.heavyAndWarning))
+    }
 
-        XCTAssertEqual(cases.count, 10)
+    // Purpose: Confirm Hashable identity for case values.
+    func testFeedbackTypeHashableIdentity() {
+        XCTAssertEqual(FeedbackType.light, FeedbackType.light)
+        XCTAssertNotEqual(FeedbackType.light, FeedbackType.heavy)
+
+        var set: Set<FeedbackType> = []
+        set.insert(.light)
+        set.insert(.light)
+        XCTAssertEqual(set.count, 1)
     }
 }

@@ -1,6 +1,7 @@
 // Purpose: Package-level configuration for haptic playback.
 
 /// Namespace for package-wide HapticEase settings.
+@MainActor
 public enum HapticEase {
     /// Controls whether any haptic playback may run.
     ///
