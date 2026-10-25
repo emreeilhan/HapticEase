@@ -25,7 +25,33 @@ jobs:
       - name: Test on iOS Simulator
         run: |
           set -euo pipefail
+
+          # Purpose: CoreSimulator can briefly report only placeholder destinations
+          # on macos-15. Wait for a real iPhone device, prefer iPhone 16, then test by id.
+          udid=""
+          for _ in $(seq 1 60); do
+            xcrun simctl list devices available >/tmp/simctl-devices.txt
+            udid=$(awk -F '[()]' '/iPhone 16 \(/ { print $2; exit }' /tmp/simctl-devices.txt || true)
+            if [[ -z "$udid" ]]; then
+              udid=$(awk -F '[()]' '/iPhone / { print $2; exit }' /tmp/simctl-devices.txt || true)
+            fi
+            if [[ -n "$udid" ]]; then
+              break
+            fi
+            sleep 2
+          done
+
+          if [[ -z "$udid" ]]; then
+            echo "No available iPhone simulator found"
+            cat /tmp/simctl-devices.txt
+            exit 1
+          fi
+
+          echo "Using iOS Simulator id=$udid"
+          xcrun simctl boot "$udid" 2>/dev/null || true
+          xcrun simctl bootstatus "$udid" -b
+
           xcodebuild test \
             -scheme HapticEase \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,id=$udid" \
             CODE_SIGNING_ALLOWED=NO
