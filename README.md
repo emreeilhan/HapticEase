@@ -1,11 +1,8 @@
-
----
-
 # HapticEase
 
 [![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 `HapticEase` is a lightweight Swift library that simplifies haptic feedback in SwiftUI. It wraps UIKit feedback generators behind a small API for common notification, impact, selection, and built-in multi-step patterns.
 
@@ -31,13 +28,13 @@ To integrate `HapticEase` into your project using Swift Package Manager, add it 
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.5.0")
+    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.6.0")
 ]
 ```
 
 Or, you can add the package directly within Xcode by going to:
 
-`File > Swift Packages > Add Package Dependency...` and enter the repository URL:
+`File > Add Package Dependencies…` and enter the repository URL:
 
 ```
 https://github.com/emreeilhan/HapticEase.git
@@ -104,5 +101,3 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 ## License
 
 `HapticEase` is available under the MIT license. See the [LICENSE](https://github.com/emreeilhan/HapticEase/blob/main/LICENSE) file for more information.
-
----
