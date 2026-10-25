@@ -5,8 +5,10 @@ import XCTest
 @MainActor
 final class HapticEaseToggleTests: XCTestCase {
 
-    override func tearDown() async throws {
-        HapticEase.isEnabled = true
+    nonisolated override func tearDown() async throws {
+        await MainActor.run {
+            HapticEase.isEnabled = true
+        }
         try await super.tearDown()
     }
 
