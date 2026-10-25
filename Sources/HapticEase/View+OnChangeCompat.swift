@@ -7,6 +7,7 @@ extension View {
         of value: V,
         perform action: @escaping () -> Void
     ) -> some View {
+#if compiler(>=5.9)
         if #available(iOS 17.0, *) {
             self.onChange(of: value) { _, _ in
                 action()
@@ -16,5 +17,10 @@ extension View {
                 action()
             }
         }
+#else
+        self.onChange(of: value) { _ in
+            action()
+        }
+#endif
     }
 }
