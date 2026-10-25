@@ -12,16 +12,14 @@ public struct HapticFeedbackModifier: ViewModifier {
     let hapticFeedback: HapticFeedback
     let trigger: Bool
     let feedbackType: FeedbackType
- 
+
     public func body(content: Content) -> some View {
         content
-            .onChange(of: trigger) { newValue in
-                if newValue {
-                    triggerFeedback()
-                }
+            .onChangeCompat(of: trigger) {
+                triggerFeedback()
             }
     }
- 
+
     /// Triggers the appropriate haptic feedback based on the provided feedback type.
     private func triggerFeedback() {
         switch feedbackType {
