@@ -18,13 +18,6 @@ final class HapticFeedbackMockTests: XCTestCase {
         try await super.setUp()
         await MainActor.run {
             HapticEase.isEnabled = true
-            light = MockImpactGenerator()
-            medium = MockImpactGenerator()
-            heavy = MockImpactGenerator()
-            rigid = MockImpactGenerator()
-            soft = MockImpactGenerator()
-            notification = MockNotificationGenerator()
-            selection = MockSelectionGenerator()
         }
     }
 
@@ -36,7 +29,15 @@ final class HapticFeedbackMockTests: XCTestCase {
     }
 
     private func makeSUT() -> HapticFeedback {
-        HapticFeedback(
+        light = MockImpactGenerator()
+        medium = MockImpactGenerator()
+        heavy = MockImpactGenerator()
+        rigid = MockImpactGenerator()
+        soft = MockImpactGenerator()
+        notification = MockNotificationGenerator()
+        selection = MockSelectionGenerator()
+
+        return HapticFeedback(
             lightGenerator: light,
             mediumGenerator: medium,
             heavyGenerator: heavy,
