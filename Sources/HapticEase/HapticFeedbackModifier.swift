@@ -20,10 +20,8 @@ public struct HapticFeedbackModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .onChange(of: trigger) { newValue in
-                if newValue {
-                    triggerFeedback()
-                }
+            .onChangeCompat(of: trigger) {
+                triggerFeedback()
             }
     }
 
