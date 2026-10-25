@@ -21,6 +21,8 @@
 - **Xcode 14.0+**
 - **Swift 5.7+**
 
+On iOS 17 and later, SwiftUI's built-in `.sensoryFeedback(_:trigger:)` covers basic cases. HapticEase is useful when you need iOS 14–16 support, UIKit, or the predefined patterns.
+
 ## Installation
 
 ### Swift Package Manager
