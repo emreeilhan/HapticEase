@@ -9,6 +9,8 @@ final class HapticFeedbackMockTests: XCTestCase {
     private var light: MockImpactGenerator!
     private var medium: MockImpactGenerator!
     private var heavy: MockImpactGenerator!
+    private var rigid: MockImpactGenerator!
+    private var soft: MockImpactGenerator!
     private var notification: MockNotificationGenerator!
     private var selection: MockSelectionGenerator!
 
@@ -18,6 +20,8 @@ final class HapticFeedbackMockTests: XCTestCase {
         light = MockImpactGenerator()
         medium = MockImpactGenerator()
         heavy = MockImpactGenerator()
+        rigid = MockImpactGenerator()
+        soft = MockImpactGenerator()
         notification = MockNotificationGenerator()
         selection = MockSelectionGenerator()
     }
@@ -32,6 +36,8 @@ final class HapticFeedbackMockTests: XCTestCase {
             lightGenerator: light,
             mediumGenerator: medium,
             heavyGenerator: heavy,
+            rigidGenerator: rigid,
+            softGenerator: soft,
             notificationGenerator: notification,
             selectionFeedbackGenerator: selection
         )
@@ -44,6 +50,8 @@ final class HapticFeedbackMockTests: XCTestCase {
         XCTAssertEqual(light.prepareCallCount, 1)
         XCTAssertEqual(medium.prepareCallCount, 1)
         XCTAssertEqual(heavy.prepareCallCount, 1)
+        XCTAssertEqual(rigid.prepareCallCount, 1)
+        XCTAssertEqual(soft.prepareCallCount, 1)
         XCTAssertEqual(notification.prepareCallCount, 1)
         XCTAssertEqual(selection.prepareCallCount, 1)
     }
@@ -55,15 +63,19 @@ final class HapticFeedbackMockTests: XCTestCase {
 
         sut.success()
         sut.light()
+        sut.rigid(intensity: 0.5)
         sut.selection()
         sut.customLightPattern()
 
         XCTAssertEqual(light.prepareCallCount, 0)
         XCTAssertEqual(medium.prepareCallCount, 0)
         XCTAssertEqual(heavy.prepareCallCount, 0)
+        XCTAssertEqual(rigid.prepareCallCount, 0)
+        XCTAssertEqual(soft.prepareCallCount, 0)
         XCTAssertEqual(notification.prepareCallCount, 0)
         XCTAssertEqual(selection.prepareCallCount, 0)
         XCTAssertEqual(light.impactCallCount, 0)
+        XCTAssertEqual(rigid.impactCallCount, 0)
         XCTAssertEqual(notification.notifications.count, 0)
         XCTAssertEqual(selection.selectionCallCount, 0)
     }
@@ -75,14 +87,35 @@ final class HapticFeedbackMockTests: XCTestCase {
         sut.light()
         sut.medium()
         sut.heavy()
+        sut.rigid()
+        sut.soft()
         sut.success()
         sut.selection()
 
         XCTAssertEqual(light.impactCallCount, 1)
         XCTAssertEqual(medium.impactCallCount, 1)
         XCTAssertEqual(heavy.impactCallCount, 1)
+        XCTAssertEqual(rigid.impactCallCount, 1)
+        XCTAssertEqual(soft.impactCallCount, 1)
+        XCTAssertEqual(light.impactIntensities, [nil])
         XCTAssertEqual(notification.notifications, [.success])
         XCTAssertEqual(selection.selectionCallCount, 1)
+    }
+
+    // Purpose: Intensity parameters should route to impactOccurred(intensity:).
+    func testImpactIntensityIsForwardedToGenerators() {
+        let sut = makeSUT()
+
+        sut.light(intensity: 0.25)
+        sut.rigid(intensity: 0.8)
+        sut.soft(intensity: 0.1)
+
+        XCTAssertEqual(light.impactIntensities, [0.25])
+        XCTAssertEqual(rigid.impactIntensities, [0.8])
+        XCTAssertEqual(soft.impactIntensities, [0.1])
+        XCTAssertEqual(light.impactCallCount, 1)
+        XCTAssertEqual(rigid.impactCallCount, 1)
+        XCTAssertEqual(soft.impactCallCount, 1)
     }
 
     // Purpose: Pattern helpers should fire the delayed second step.

@@ -11,7 +11,7 @@
 
 - **Simple Integration**: Add haptic feedback to SwiftUI views with a view modifier or direct API calls.
 - **Built-in Patterns**: Trigger fixed multi-step sequences such as `customLightPattern`, `lightAndMediumPattern`, and `heavyAndWarningPattern`.
-- **Multiple Feedback Types**: Light, medium, and heavy impacts; success, error, and warning notifications; selection feedback.
+- **Multiple Feedback Types**: Light, medium, heavy, rigid, and soft impacts (optional intensity); success, error, and warning notifications; selection feedback.
 
 ## Requirements
 
@@ -52,6 +52,8 @@ import HapticEase
 
 let haptic = HapticFeedback()
 haptic.success() // Triggers a success haptic feedback
+haptic.rigid(intensity: 0.8) // Rigid impact with custom intensity
+haptic.soft() // Soft impact at default intensity
 ```
 
 ### Built-in Haptic Patterns
@@ -89,6 +91,8 @@ struct ContentView: View {
             triggerHaptic.toggle()
         }
         .hapticFeedback(trigger: triggerHaptic, type: .success)
+        // Impact styles can also pass intensity:
+        // .hapticFeedback(trigger: triggerHaptic, type: .rigid, intensity: 0.6)
     }
 }
 ```

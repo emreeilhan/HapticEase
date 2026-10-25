@@ -5,6 +5,7 @@ import UIKit
 final class MockImpactGenerator: ImpactHapticGenerating {
     private(set) var prepareCallCount = 0
     private(set) var impactCallCount = 0
+    private(set) var impactIntensities: [CGFloat?] = []
 
     func prepare() {
         prepareCallCount += 1
@@ -12,6 +13,12 @@ final class MockImpactGenerator: ImpactHapticGenerating {
 
     func impactOccurred() {
         impactCallCount += 1
+        impactIntensities.append(nil)
+    }
+
+    func impactOccurred(intensity: CGFloat) {
+        impactCallCount += 1
+        impactIntensities.append(intensity)
     }
 }
 

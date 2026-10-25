@@ -4,10 +4,12 @@ import XCTest
 
 final class FeedbackTypeTests: XCTestCase {
 
-    // Purpose: Ensure CaseIterable lists every feedback case.
+    // Purpose: Ensure CaseIterable lists every feedback case, including rigid/soft.
     func testAllFeedbackTypeCasesAreReachable() {
-        XCTAssertEqual(FeedbackType.allCases.count, 10)
+        XCTAssertEqual(FeedbackType.allCases.count, 12)
         XCTAssertTrue(FeedbackType.allCases.contains(.success))
+        XCTAssertTrue(FeedbackType.allCases.contains(.rigid))
+        XCTAssertTrue(FeedbackType.allCases.contains(.soft))
         XCTAssertTrue(FeedbackType.allCases.contains(.heavyAndWarning))
     }
 

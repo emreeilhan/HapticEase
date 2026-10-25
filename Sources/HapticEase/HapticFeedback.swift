@@ -10,6 +10,8 @@ public class HapticFeedback {
     private let lightGenerator: ImpactHapticGenerating
     private let mediumGenerator: ImpactHapticGenerating
     private let heavyGenerator: ImpactHapticGenerating
+    private let rigidGenerator: ImpactHapticGenerating
+    private let softGenerator: ImpactHapticGenerating
 
     private let notificationGenerator: NotificationHapticGenerating
     private let selectionFeedbackGenerator: SelectionHapticGenerating
@@ -19,6 +21,8 @@ public class HapticFeedback {
         self.lightGenerator = UIImpactFeedbackGenerator(style: .light)
         self.mediumGenerator = UIImpactFeedbackGenerator(style: .medium)
         self.heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        self.rigidGenerator = UIImpactFeedbackGenerator(style: .rigid)
+        self.softGenerator = UIImpactFeedbackGenerator(style: .soft)
         self.notificationGenerator = UINotificationFeedbackGenerator()
         self.selectionFeedbackGenerator = UISelectionFeedbackGenerator()
 
@@ -32,12 +36,16 @@ public class HapticFeedback {
         lightGenerator: ImpactHapticGenerating,
         mediumGenerator: ImpactHapticGenerating,
         heavyGenerator: ImpactHapticGenerating,
+        rigidGenerator: ImpactHapticGenerating,
+        softGenerator: ImpactHapticGenerating,
         notificationGenerator: NotificationHapticGenerating,
         selectionFeedbackGenerator: SelectionHapticGenerating
     ) {
         self.lightGenerator = lightGenerator
         self.mediumGenerator = mediumGenerator
         self.heavyGenerator = heavyGenerator
+        self.rigidGenerator = rigidGenerator
+        self.softGenerator = softGenerator
         self.notificationGenerator = notificationGenerator
         self.selectionFeedbackGenerator = selectionFeedbackGenerator
 
@@ -50,6 +58,8 @@ public class HapticFeedback {
         lightGenerator.prepare()
         mediumGenerator.prepare()
         heavyGenerator.prepare()
+        rigidGenerator.prepare()
+        softGenerator.prepare()
         notificationGenerator.prepare()
         selectionFeedbackGenerator.prepare()
     }
@@ -57,6 +67,18 @@ public class HapticFeedback {
     // Purpose: Shared gate for every UIKit trigger path.
     private var canPlay: Bool {
         HapticEase.isEnabled
+    }
+
+    // Purpose: Prefer intensity-based playback when a value is provided.
+    private func playImpact(
+        _ generator: ImpactHapticGenerating,
+        intensity: CGFloat?
+    ) {
+        if let intensity {
+            generator.impactOccurred(intensity: intensity)
+        } else {
+            generator.impactOccurred()
+        }
     }
 
     /// Plays a success notification haptic.
@@ -84,21 +106,38 @@ public class HapticFeedback {
     }
 
     /// Plays a light impact haptic.
-    public func light() {
+    /// - Parameter intensity: Optional relative intensity in the range `0...1`.
+    public func light(intensity: CGFloat? = nil) {
         guard canPlay else { return }
-        lightGenerator.impactOccurred()
+        playImpact(lightGenerator, intensity: intensity)
     }
 
     /// Plays a medium impact haptic.
-    public func medium() {
+    /// - Parameter intensity: Optional relative intensity in the range `0...1`.
+    public func medium(intensity: CGFloat? = nil) {
         guard canPlay else { return }
-        mediumGenerator.impactOccurred()
+        playImpact(mediumGenerator, intensity: intensity)
     }
 
     /// Plays a heavy impact haptic.
-    public func heavy() {
+    /// - Parameter intensity: Optional relative intensity in the range `0...1`.
+    public func heavy(intensity: CGFloat? = nil) {
         guard canPlay else { return }
-        heavyGenerator.impactOccurred()
+        playImpact(heavyGenerator, intensity: intensity)
+    }
+
+    /// Plays a rigid impact haptic.
+    /// - Parameter intensity: Optional relative intensity in the range `0...1`.
+    public func rigid(intensity: CGFloat? = nil) {
+        guard canPlay else { return }
+        playImpact(rigidGenerator, intensity: intensity)
+    }
+
+    /// Plays a soft impact haptic.
+    /// - Parameter intensity: Optional relative intensity in the range `0...1`.
+    public func soft(intensity: CGFloat? = nil) {
+        guard canPlay else { return }
+        playImpact(softGenerator, intensity: intensity)
     }
 
     /// Plays the built-in two light-impact pattern.

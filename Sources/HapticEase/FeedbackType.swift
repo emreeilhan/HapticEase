@@ -14,6 +14,10 @@ public enum FeedbackType: CaseIterable, Hashable, Sendable {
     case medium
     /// A heavy impact haptic.
     case heavy
+    /// A rigid impact haptic.
+    case rigid
+    /// A soft impact haptic.
+    case soft
     /// Built-in pattern: two light impacts in sequence.
     case customLight
     /// Built-in pattern: a light impact followed by a medium impact.

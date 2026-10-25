@@ -4,6 +4,7 @@ import UIKit
 protocol ImpactHapticGenerating: AnyObject {
     func prepare()
     func impactOccurred()
+    func impactOccurred(intensity: CGFloat)
 }
 
 protocol NotificationHapticGenerating: AnyObject {
