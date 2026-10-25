@@ -27,6 +27,9 @@ public struct HapticFeedbackModifier: ViewModifier {
 
     /// Triggers the appropriate haptic feedback based on the provided feedback type.
     private func triggerFeedback() {
+        // Purpose: Honor the global toggle before any SwiftUI-driven playback.
+        guard HapticEase.isEnabled else { return }
+
         switch feedbackType {
         case .success:
             hapticFeedback.success()

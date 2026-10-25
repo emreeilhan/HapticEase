@@ -64,6 +64,14 @@ haptic.lightAndMediumPattern()   // Light impact, then medium
 haptic.heavyAndWarningPattern()  // Heavy impact, then warning
 ```
 
+### Global Toggle
+
+Disable or re-enable all haptic playback with `HapticEase.isEnabled` (defaults to `true`). When it is `false`, SwiftUI modifiers and UIKit helpers become no-ops:
+
+```swift
+HapticEase.isEnabled = false
+```
+
 ### Integrating with SwiftUI
 
 You can use `HapticFeedbackModifier` to easily integrate haptic feedback into any SwiftUI view. Haptics fire whenever the `trigger` value changes (for example, each `toggle()`), not only when it becomes `true`:
