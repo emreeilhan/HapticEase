@@ -1,10 +1,3 @@
-//
-//  HapticFeedback.swift
-//
-//
-//  Created by Emre Ilhan on 8/13/24.
-//
-
 import SwiftUI
 
 /// Plays common UIKit haptic feedback patterns from app code.
