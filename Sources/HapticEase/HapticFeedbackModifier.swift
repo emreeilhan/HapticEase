@@ -8,6 +8,7 @@
 import SwiftUI
 
 /// A view modifier to easily apply haptic feedback to SwiftUI views.
+@MainActor
 public struct HapticFeedbackModifier: ViewModifier {
     @State private var hapticFeedback = HapticFeedback()
     let trigger: Bool
