@@ -4,7 +4,7 @@
 
 # HapticEase
 
-[![Swift](https://img.shields.io/badge/Swift-5.5-orange.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -19,8 +19,8 @@
 ## Requirements
 
 - **iOS 13.0+**
-- **Xcode 11.0+**
-- **Swift 5.5+**
+- **Xcode 14.0+**
+- **Swift 5.7+**
 
 ## Installation
 
