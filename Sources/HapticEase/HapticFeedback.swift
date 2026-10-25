@@ -6,21 +6,45 @@ import SwiftUI
 /// All trigger methods respect ``HapticEase/isEnabled``.
 @MainActor
 public class HapticFeedback {
- 
-    private let lightGenerator = UIImpactFeedbackGenerator(style: .light)
-    private let mediumGenerator = UIImpactFeedbackGenerator(style: .medium)
-    private let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
- 
-    private let notificationGenerator = UINotificationFeedbackGenerator()
-    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
- 
+
+    private let lightGenerator: ImpactHapticGenerating
+    private let mediumGenerator: ImpactHapticGenerating
+    private let heavyGenerator: ImpactHapticGenerating
+
+    private let notificationGenerator: NotificationHapticGenerating
+    private let selectionFeedbackGenerator: SelectionHapticGenerating
+
     /// Creates a helper and prepares generators when haptics are enabled.
     public init() {
+        self.lightGenerator = UIImpactFeedbackGenerator(style: .light)
+        self.mediumGenerator = UIImpactFeedbackGenerator(style: .medium)
+        self.heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        self.notificationGenerator = UINotificationFeedbackGenerator()
+        self.selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+
         // Purpose: Avoid prepare() work when haptics are globally disabled.
         guard HapticEase.isEnabled else { return }
         prepareGenerators()
     }
- 
+
+    /// Creates a helper with injectable generators for tests.
+    init(
+        lightGenerator: ImpactHapticGenerating,
+        mediumGenerator: ImpactHapticGenerating,
+        heavyGenerator: ImpactHapticGenerating,
+        notificationGenerator: NotificationHapticGenerating,
+        selectionFeedbackGenerator: SelectionHapticGenerating
+    ) {
+        self.lightGenerator = lightGenerator
+        self.mediumGenerator = mediumGenerator
+        self.heavyGenerator = heavyGenerator
+        self.notificationGenerator = notificationGenerator
+        self.selectionFeedbackGenerator = selectionFeedbackGenerator
+
+        guard HapticEase.isEnabled else { return }
+        prepareGenerators()
+    }
+
     /// Prepares all haptic feedback generators to reduce latency on first use.
     private func prepareGenerators() {
         lightGenerator.prepare()
@@ -34,49 +58,49 @@ public class HapticFeedback {
     private var canPlay: Bool {
         HapticEase.isEnabled
     }
- 
+
     /// Plays a success notification haptic.
     public func success() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.success)
     }
- 
+
     /// Plays an error notification haptic.
     public func error() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.error)
     }
- 
+
     /// Plays a warning notification haptic.
     public func warning() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.warning)
     }
- 
+
     /// Plays a selection-change haptic.
     public func selection() {
         guard canPlay else { return }
         selectionFeedbackGenerator.selectionChanged()
     }
- 
+
     /// Plays a light impact haptic.
     public func light() {
         guard canPlay else { return }
         lightGenerator.impactOccurred()
     }
- 
+
     /// Plays a medium impact haptic.
     public func medium() {
         guard canPlay else { return }
         mediumGenerator.impactOccurred()
     }
- 
+
     /// Plays a heavy impact haptic.
     public func heavy() {
         guard canPlay else { return }
         heavyGenerator.impactOccurred()
     }
- 
+
     /// Plays the built-in two light-impact pattern.
     public func customLightPattern() {
         guard canPlay else { return }
@@ -86,7 +110,7 @@ public class HapticFeedback {
             self.lightGenerator.impactOccurred()
         }
     }
- 
+
     /// Plays the built-in light-then-medium impact pattern.
     public func lightAndMediumPattern() {
         guard canPlay else { return }
@@ -96,7 +120,7 @@ public class HapticFeedback {
             self.mediumGenerator.impactOccurred()
         }
     }
- 
+
     /// Plays the built-in heavy impact followed by a warning notification.
     public func heavyAndWarningPattern() {
         guard canPlay else { return }
