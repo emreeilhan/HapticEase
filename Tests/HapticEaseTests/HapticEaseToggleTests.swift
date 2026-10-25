@@ -33,5 +33,14 @@ final class HapticEaseToggleTests: XCTestCase {
 
         XCTAssertFalse(HapticEase.isEnabled)
     }
+
+    // Purpose: Init must succeed when disabled without preparing generators.
+    @MainActor
+    func testInitSucceedsWhenHapticsAreDisabled() {
+        HapticEase.isEnabled = false
+        let haptic = HapticFeedback()
+        XCTAssertNotNil(haptic)
+        XCTAssertFalse(HapticEase.isEnabled)
+    }
 #endif
 }
