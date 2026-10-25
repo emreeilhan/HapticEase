@@ -9,10 +9,15 @@ import SwiftUI
 
 /// A view modifier to easily apply haptic feedback to SwiftUI views.
 public struct HapticFeedbackModifier: ViewModifier {
-    let hapticFeedback: HapticFeedback
+    @State private var hapticFeedback = HapticFeedback()
     let trigger: Bool
     let feedbackType: FeedbackType
- 
+
+    public init(trigger: Bool, feedbackType: FeedbackType) {
+        self.trigger = trigger
+        self.feedbackType = feedbackType
+    }
+
     public func body(content: Content) -> some View {
         content
             .onChange(of: trigger) { newValue in
@@ -21,7 +26,7 @@ public struct HapticFeedbackModifier: ViewModifier {
                 }
             }
     }
- 
+
     /// Triggers the appropriate haptic feedback based on the provided feedback type.
     private func triggerFeedback() {
         switch feedbackType {
