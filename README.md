@@ -95,17 +95,25 @@ struct ContentView: View {
 
 ## Documentation
 
-See the [Usage](#usage) section above for API examples. Source types live under `Sources/HapticEase`.
+- Start with the [Usage](#usage) examples above for `HapticFeedback`, built-in patterns, `HapticEase.isEnabled`, and the SwiftUI modifier.
+- Public types live under `Sources/HapticEase`. Symbol documentation is in DocC comments and the `HapticEase.docc` catalog.
+- Release history is tracked in [CHANGELOG.md](CHANGELOG.md).
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests should be made against the `main` branch.
+Contributions are welcome. Fork the repository, use a topic branch, and open a pull request against `main`.
+
+Preferred branch prefixes:
+
+- `feat/` for new features
+- `fix/` for bug fixes
+- `docs/` for documentation-only changes
+- `chore/` for maintenance and tooling
 
 1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a pull request.
+2. Create your branch (`git checkout -b feat/short-description`).
+3. Commit your changes.
+4. Push the branch and open a pull request.
 
 ## License
 

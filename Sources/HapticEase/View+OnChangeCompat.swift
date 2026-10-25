@@ -1,10 +1,3 @@
-//
-//  View+OnChangeCompat.swift
-//
-//
-//  Created by Emre Ilhan on 8/13/24.
-//
-
 import SwiftUI
 
 extension View {

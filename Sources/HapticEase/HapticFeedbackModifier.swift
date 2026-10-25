@@ -1,10 +1,3 @@
-//
-//  HapticFeedbackModifier.swift
-//  
-//
-//  Created by Emre Ilhan on 8/13/24.
-//
-
 import SwiftUI
 
 /// A SwiftUI view modifier that plays haptic feedback when a trigger value changes.

@@ -1,10 +1,3 @@
-//
-//  View+HapticFeedback.swift
-//  
-//
-//  Created by Emre Ilhan on 8/13/24.
-//
-
 import SwiftUI
 
 public extension View {

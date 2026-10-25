@@ -1,11 +1,3 @@
-//
-//  FeedbackType.swift
-//  
-//
-//  Created by Emre Ilhan on 8/13/24.
-//
-
-/// Feedback styles that can be played through ``HapticFeedback`` or the SwiftUI modifier.
 public enum FeedbackType {
     /// A success notification haptic.
     case success
