@@ -14,9 +14,21 @@ final class HapticFeedbackMockTests: XCTestCase {
     private var notification: MockNotificationGenerator!
     private var selection: MockSelectionGenerator!
 
-    override func setUp() {
-        super.setUp()
-        HapticEase.isEnabled = true
+    nonisolated override func setUp() async throws {
+        try await super.setUp()
+        await MainActor.run {
+            HapticEase.isEnabled = true
+        }
+    }
+
+    nonisolated override func tearDown() async throws {
+        await MainActor.run {
+            HapticEase.isEnabled = true
+        }
+        try await super.tearDown()
+    }
+
+    private func makeSUT() -> HapticFeedback {
         light = MockImpactGenerator()
         medium = MockImpactGenerator()
         heavy = MockImpactGenerator()
@@ -24,15 +36,8 @@ final class HapticFeedbackMockTests: XCTestCase {
         soft = MockImpactGenerator()
         notification = MockNotificationGenerator()
         selection = MockSelectionGenerator()
-    }
 
-    override func tearDown() {
-        HapticEase.isEnabled = true
-        super.tearDown()
-    }
-
-    private func makeSUT() -> HapticFeedback {
-        HapticFeedback(
+        return HapticFeedback(
             lightGenerator: light,
             mediumGenerator: medium,
             heavyGenerator: heavy,
