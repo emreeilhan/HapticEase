@@ -45,15 +45,17 @@ https://github.com/emreeilhan/HapticEase.git
 
 ### Basic Haptic Feedback
 
-To use basic haptic feedback, create an instance of `HapticFeedback` and call the desired method:
+To use basic haptic feedback, create an instance of `HapticFeedback` and call the desired method on the main actor:
 
 ```swift
 import HapticEase
 
-let haptic = HapticFeedback()
-haptic.success() // Triggers a success haptic feedback
-haptic.rigid(intensity: 0.8) // Rigid impact with custom intensity
-haptic.soft() // Soft impact at default intensity
+Task { @MainActor in
+    let haptic = HapticFeedback()
+    haptic.success() // Triggers a success haptic feedback
+    haptic.rigid(intensity: 0.8) // Rigid impact with custom intensity
+    haptic.soft() // Soft impact at default intensity
+}
 ```
 
 ### Built-in Haptic Patterns
@@ -61,10 +63,14 @@ haptic.soft() // Soft impact at default intensity
 `HapticEase` includes a few fixed multi-step patterns. These are predefined sequences, not user-defined patterns:
 
 ```swift
-let haptic = HapticFeedback()
-haptic.customLightPattern()      // Two light impacts
-haptic.lightAndMediumPattern()   // Light impact, then medium
-haptic.heavyAndWarningPattern()  // Heavy impact, then warning
+import HapticEase
+
+Task { @MainActor in
+    let haptic = HapticFeedback()
+    haptic.customLightPattern()      // Two light impacts
+    haptic.lightAndMediumPattern()   // Light impact, then medium
+    haptic.heavyAndWarningPattern()  // Heavy impact, then warning
+}
 ```
 
 ### Global Toggle
@@ -72,7 +78,11 @@ haptic.heavyAndWarningPattern()  // Heavy impact, then warning
 Disable or re-enable all haptic playback with `HapticEase.isEnabled` (defaults to `true`). When it is `false`, SwiftUI modifiers and UIKit helpers become no-ops:
 
 ```swift
-HapticEase.isEnabled = false
+import HapticEase
+
+Task { @MainActor in
+    HapticEase.isEnabled = false
+}
 ```
 
 ### Integrating with SwiftUI

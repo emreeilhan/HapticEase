@@ -22,6 +22,9 @@ jobs:
       - name: Resolve package
         run: xcodebuild -resolvePackageDependencies -scheme HapticEase
 
+      - name: Check README examples
+        run: python3 Scripts/check-readme-examples.py
+
       - name: Test on iOS Simulator
         run: |
           set -euo pipefail
