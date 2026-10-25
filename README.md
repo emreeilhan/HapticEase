@@ -67,7 +67,7 @@ haptic.heavyAndWarningPattern()  // Heavy impact, then warning
 
 ### Integrating with SwiftUI
 
-You can use `HapticFeedbackModifier` to easily integrate haptic feedback into any SwiftUI view:
+You can use `HapticFeedbackModifier` to easily integrate haptic feedback into any SwiftUI view. Haptics fire whenever the `trigger` value changes (for example, each `toggle()`), not only when it becomes `true`:
 
 ```swift
 import SwiftUI
