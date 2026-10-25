@@ -10,6 +10,9 @@ jobs:
   test:
     name: Build and Test
     runs-on: macos-15
+    strategy:
+      matrix:
+        swift-version: ["5", "6"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,4 +57,6 @@ jobs:
           xcodebuild test \
             -scheme HapticEase \
             -destination "platform=iOS Simulator,id=$udid" \
+            SWIFT_VERSION=${{ matrix.swift-version }} \
+            SWIFT_STRICT_CONCURRENCY=complete \
             CODE_SIGNING_ALLOWED=NO

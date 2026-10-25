@@ -5,9 +5,9 @@ import XCTest
 @MainActor
 final class HapticEaseToggleTests: XCTestCase {
 
-    override func tearDown() {
+    override func tearDown() async throws {
         HapticEase.isEnabled = true
-        super.tearDown()
+        try await super.tearDown()
     }
 
     // Purpose: Confirm the default is enabled and the flag can be toggled.
