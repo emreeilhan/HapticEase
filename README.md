@@ -1,5 +1,4 @@
 
-
 ---
 
 # HapticEase
@@ -8,13 +7,13 @@
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-`HapticEase` is a lightweight Swift library that simplifies the integration of haptic feedback in your SwiftUI applications. Whether you're looking to add a simple vibration or a complex pattern, `HapticEase` provides an easy-to-use interface to enhance your app's user experience with tactile feedback.
+`HapticEase` is a lightweight Swift library that simplifies haptic feedback in SwiftUI. It wraps UIKit feedback generators behind a small API for common notification, impact, selection, and built-in multi-step patterns.
 
 ## Features
 
-- **Simple Integration**: Easily add haptic feedback to any SwiftUI view with minimal code.
-- **Custom Patterns**: Create and trigger custom haptic feedback patterns.
-- **Multiple Feedback Types**: Includes support for light, medium, heavy impacts, and success, error, warning notifications.
+- **Simple Integration**: Add haptic feedback to SwiftUI views with a view modifier or direct API calls.
+- **Built-in Patterns**: Trigger fixed multi-step sequences such as `customLightPattern`, `lightAndMediumPattern`, and `heavyAndWarningPattern`.
+- **Multiple Feedback Types**: Light, medium, and heavy impacts; success, error, and warning notifications; selection feedback.
 
 ## Requirements
 
@@ -30,7 +29,7 @@ To integrate `HapticEase` into your project using Swift Package Manager, add it 
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.0.0")
+    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.5.0")
 ]
 ```
 
@@ -55,13 +54,15 @@ let haptic = HapticFeedback()
 haptic.success() // Triggers a success haptic feedback
 ```
 
-### Custom Haptic Patterns
+### Built-in Haptic Patterns
 
-`HapticEase` also allows you to create custom haptic patterns:
+`HapticEase` includes a few fixed multi-step patterns. These are predefined sequences, not user-defined patterns:
 
 ```swift
 let haptic = HapticFeedback()
-haptic.customLightPattern() // Triggers a custom light pattern
+haptic.customLightPattern()      // Two light impacts
+haptic.lightAndMediumPattern()   // Light impact, then medium
+haptic.heavyAndWarningPattern()  // Heavy impact, then warning
 ```
 
 ### Integrating with SwiftUI
@@ -86,7 +87,7 @@ struct ContentView: View {
 
 ## Documentation
 
-Comprehensive documentation is available [here](https://github.com/emreeilhan/HapticEase/wiki).
+See the [Usage](#usage) section above for API examples. Source types live under `Sources/HapticEase`.
 
 ## Contributing
 
@@ -103,4 +104,3 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 `HapticEase` is available under the MIT license. See the [LICENSE](https://github.com/emreeilhan/HapticEase/blob/main/LICENSE) file for more information.
 
 ---
-
