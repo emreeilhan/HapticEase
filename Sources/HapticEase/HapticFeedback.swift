@@ -20,6 +20,8 @@ public class HapticFeedback {
  
     /// Initializes the HapticFeedback class and prepares the generators for use.
     public init() {
+        // Purpose: Avoid prepare() work when haptics are globally disabled.
+        guard HapticEase.isEnabled else { return }
         prepareGenerators()
     }
  
