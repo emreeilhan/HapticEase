@@ -3,6 +3,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/emreeilhan/HapticEase/actions/workflows/ci.yml/badge.svg)](https://github.com/emreeilhan/HapticEase/actions/workflows/ci.yml)
 
 `HapticEase` is a lightweight Swift library that simplifies haptic feedback in SwiftUI. It wraps UIKit feedback generators behind a small API for common notification, impact, selection, and built-in multi-step patterns.
 
