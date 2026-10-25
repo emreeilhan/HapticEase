@@ -2,6 +2,7 @@
 import XCTest
 @testable import HapticEase
 
+@MainActor
 final class HapticEaseToggleTests: XCTestCase {
 
     override func tearDown() {
@@ -22,7 +23,6 @@ final class HapticEaseToggleTests: XCTestCase {
 
 #if canImport(UIKit)
     // Purpose: Disabled mode must keep UIKit helpers callable without crashing.
-    @MainActor
     func testDisabledHapticFeedbackCallsAreNoOps() {
         HapticEase.isEnabled = false
         let haptic = HapticFeedback()
@@ -35,7 +35,6 @@ final class HapticEaseToggleTests: XCTestCase {
     }
 
     // Purpose: Init must succeed when disabled without preparing generators.
-    @MainActor
     func testInitSucceedsWhenHapticsAreDisabled() {
         HapticEase.isEnabled = false
         let haptic = HapticFeedback()
