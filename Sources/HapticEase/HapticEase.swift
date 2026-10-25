@@ -1,7 +1,10 @@
 // Purpose: Package-level configuration for haptic playback.
 
-/// Global configuration for HapticEase.
+/// Namespace for package-wide HapticEase settings.
 public enum HapticEase {
-    /// When `false`, all haptic trigger paths are no-ops. Defaults to `true`.
+    /// Controls whether any haptic playback may run.
+    ///
+    /// When `false`, UIKit helpers and SwiftUI modifiers become no-ops.
+    /// Defaults to `true`.
     public static var isEnabled: Bool = true
 }

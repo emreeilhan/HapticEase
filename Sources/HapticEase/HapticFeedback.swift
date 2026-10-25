@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-/// A class to simplify the usage of haptic feedback in SwiftUI applications.
+/// Plays common UIKit haptic feedback patterns from app code.
+///
+/// Create an instance and call the matching method for the feedback you need.
+/// All trigger methods respect ``HapticEase/isEnabled``.
 @MainActor
 public class HapticFeedback {
  
@@ -18,7 +21,7 @@ public class HapticFeedback {
     private let notificationGenerator = UINotificationFeedbackGenerator()
     private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
  
-    /// Initializes the HapticFeedback class and prepares the generators for use.
+    /// Creates a helper and prepares generators when haptics are enabled.
     public init() {
         // Purpose: Avoid prepare() work when haptics are globally disabled.
         guard HapticEase.isEnabled else { return }
@@ -39,49 +42,49 @@ public class HapticFeedback {
         HapticEase.isEnabled
     }
  
-    /// Triggers a success notification haptic feedback.
+    /// Plays a success notification haptic.
     public func success() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.success)
     }
  
-    /// Triggers an error notification haptic feedback.
+    /// Plays an error notification haptic.
     public func error() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.error)
     }
  
-    /// Triggers a warning notification haptic feedback.
+    /// Plays a warning notification haptic.
     public func warning() {
         guard canPlay else { return }
         notificationGenerator.notificationOccurred(.warning)
     }
  
-    /// Triggers a selection change haptic feedback.
+    /// Plays a selection-change haptic.
     public func selection() {
         guard canPlay else { return }
         selectionFeedbackGenerator.selectionChanged()
     }
  
-    /// Triggers a light impact haptic feedback.
+    /// Plays a light impact haptic.
     public func light() {
         guard canPlay else { return }
         lightGenerator.impactOccurred()
     }
  
-    /// Triggers a medium impact haptic feedback.
+    /// Plays a medium impact haptic.
     public func medium() {
         guard canPlay else { return }
         mediumGenerator.impactOccurred()
     }
  
-    /// Triggers a heavy impact haptic feedback.
+    /// Plays a heavy impact haptic.
     public func heavy() {
         guard canPlay else { return }
         heavyGenerator.impactOccurred()
     }
  
-    /// Triggers a custom haptic feedback pattern with two light impacts.
+    /// Plays the built-in two light-impact pattern.
     public func customLightPattern() {
         guard canPlay else { return }
         lightGenerator.impactOccurred()
@@ -91,7 +94,7 @@ public class HapticFeedback {
         }
     }
  
-    /// Triggers a custom haptic feedback pattern with a light impact followed by a medium impact.
+    /// Plays the built-in light-then-medium impact pattern.
     public func lightAndMediumPattern() {
         guard canPlay else { return }
         lightGenerator.impactOccurred()
@@ -101,7 +104,7 @@ public class HapticFeedback {
         }
     }
  
-    /// Triggers a custom haptic feedback pattern with a heavy impact followed by a warning notification.
+    /// Plays the built-in heavy impact followed by a warning notification.
     public func heavyAndWarningPattern() {
         guard canPlay else { return }
         heavyGenerator.impactOccurred()
