@@ -7,13 +7,20 @@
 
 import SwiftUI
 
-/// A view modifier to easily apply haptic feedback to SwiftUI views.
+/// A SwiftUI view modifier that plays haptic feedback when a trigger value changes.
 @MainActor
 public struct HapticFeedbackModifier: ViewModifier {
     @State private var hapticFeedback = HapticFeedback()
+    /// The value whose changes cause feedback to play.
     let trigger: Bool
+    /// The feedback style to play on each trigger change.
     let feedbackType: FeedbackType
 
+    /// Creates a modifier that plays `feedbackType` whenever `trigger` changes.
+    ///
+    /// - Parameters:
+    ///   - trigger: A value observed for changes.
+    ///   - feedbackType: The ``FeedbackType`` to play.
     public init(trigger: Bool, feedbackType: FeedbackType) {
         self.trigger = trigger
         self.feedbackType = feedbackType

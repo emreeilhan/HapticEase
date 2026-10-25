@@ -8,7 +8,15 @@
 import SwiftUI
 
 public extension View {
-    /// Applies haptic feedback to the view based on the specified trigger and feedback type.
+    /// Plays haptic feedback whenever `trigger` changes.
+    ///
+    /// Feedback fires on every change of `trigger` (for example each `toggle()`),
+    /// not only when the value becomes `true`.
+    ///
+    /// - Parameters:
+    ///   - trigger: A value observed for changes.
+    ///   - type: The ``FeedbackType`` to play.
+    /// - Returns: A view that plays haptics when `trigger` changes.
     @MainActor
     func hapticFeedback(trigger: Bool, type: FeedbackType) -> some View {
         self.modifier(HapticFeedbackModifier(trigger: trigger, feedbackType: type))
