@@ -29,7 +29,7 @@ To integrate `HapticEase` into your project using Swift Package Manager, add it 
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.6.0")
+    .package(url: "https://github.com/emreeilhan/HapticEase.git", from: "1.8.1")
 ]
 ```
 
